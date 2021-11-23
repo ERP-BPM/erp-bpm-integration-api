@@ -1,4 +1,6 @@
 *.log
-.DS_Store
+*.DS_Store
 node_modules
 dist
+sendgrid.env
+layer/nodejs/node_modules
