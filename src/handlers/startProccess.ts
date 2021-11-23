@@ -1,5 +1,9 @@
 import { startProcessFunc } from '../functions';
 import * as responses from './responses'
+import sgMail = require("@sendgrid/mail");
+import { sendgridApiKey } from './env';
+
+sgMail.setApiKey(sendgridApiKey);
 
 export const handler = async (event: any) => {
   const method = event.httpMethod;
