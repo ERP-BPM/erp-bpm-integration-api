@@ -8,23 +8,19 @@ sgMail.setApiKey(sendgridApiKey);
 export const handler = async (event: any) => {
   const method = event.httpMethod;
   const body = JSON.parse(event.body);
-
-  const { data, zeebe_credentials } = body;
+  const headers = event.headers;
 
   /**
    * Only POST requests
    */
   switch (method) {
     case 'POST':
-      const res = await startProcessFunc({
-        data,
-        zeebe_credentials,
-      });
+      const wfi = await startProcessFunc(body, headers);
 
       return responses.success({
         success: true,
-        variables: data,
-        result: res,
+        res: body,
+        wfi,
       });
 
     default:

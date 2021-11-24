@@ -1,24 +1,28 @@
 import * as zb from 'zeebe-node';
-import { v4 as uuidv4 } from 'uuid'
 import { orderActivityWorker } from '../workers';
 
-export const startProcessFunc = async (params: {
-  data: any,
-  zeebe_credentials: any,
-}): Promise<any> => {
-  const { data, zeebe_credentials } = params;
+export const startProcessFunc = async (payload: any, headers: any): Promise<any> => {
+  const { username, password } = headers
 
-  const zbc = new zb.ZBClient(zeebe_credentials, { loglevel: 'INFO' });
+  const zbc = new zb.ZBClient(
+    'https://api.camunda.cloud.angelalvaradohdz.me',
+    {
+      "basicAuth": {
+        username: username,
+        password: password
+      },
+      useTLS: false
+    }
+  );
 
-  // example worker
-  zbc.createWorker({
-    taskType: 'order-activity',
-    taskHandler: orderActivityWorker,
-  });
+  zbc.createWorker(
+    {
+      taskType: 'activity-task',
+      taskHandler: orderActivityWorker,
+    }
+  );
 
-  data.orderid = uuidv4()
-
-  const wfi = await zbc.createProcessInstance("process-orders", data);
+  const wfi = await zbc.createProcessInstance("single-process", { workflow_id: payload.id });
 
   return wfi;
 }
