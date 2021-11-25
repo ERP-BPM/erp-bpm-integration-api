@@ -1,10 +1,7 @@
-import * as zb from 'zeebe-node';
-import { sendEmail } from '../controllers'
-
-export async function notifyPatientComesActivity(job: zb.ZeebeJob) {
+module.exports.notifyPatientComesActivity = (job) => {
   const { variables } = job;
 
-  console.info(`* Starting notifyPatientComesActivity...: ${variables}`);
+  console.log(`* Starting notifyPatientComesActivity...: ${variables}`);
 
   /**
   await sendEmail({

@@ -1,10 +1,8 @@
-import * as zb from 'zeebe-node';
-
-export function orderActivityWorker(job: zb.ZeebeJob) {
+module.exports.orderActivityWorker = (job) => {
   const { variables } = job;
   console.info(`* Starting Order...: ${variables}`);
 
   console.info(`* Passing to next task: ${variables}`);
 
-  return job.complete();
+  job.complete();
 }

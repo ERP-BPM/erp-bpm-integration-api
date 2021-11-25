@@ -1,4 +1,4 @@
-export const success = (data: any) => {
+module.exports.success = (data) => {
   return {
     statusCode: 200,
     isBase64Encoded: false,
@@ -9,7 +9,7 @@ export const success = (data: any) => {
   }
 }
 
-export const badRequest = (data: any) => {
+exports.badRequest = (data) => {
   return {
     statusCode: 400,
     isBase64Encoded: false,
@@ -20,7 +20,7 @@ export const badRequest = (data: any) => {
   }
 }
 
-export const serverError = (data: any) => {
+exports.serverError = (data) => {
   return {
     statusCode: 500,
     isBase64Encoded: false,

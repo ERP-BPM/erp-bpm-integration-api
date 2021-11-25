@@ -5,3 +5,4 @@ dist
 sendgrid.env
 layer/nodejs/node_modules
 src/handlers/env.ts
+src/handlers/env.js

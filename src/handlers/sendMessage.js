@@ -1,7 +1,7 @@
-import { sendMessageFunc } from '../functions';
-import * as responses from './responses'
+const { sendMessageFunc } = require('../functions');
+const responses = require('./responses');
 
-export const handler = async (event: any) => {
+module.exports.handler = async (event) => {
   const method = event.httpMethod;
   const body = JSON.parse(event.body);
   const headers = event.headers;

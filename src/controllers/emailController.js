@@ -1,11 +1,6 @@
-import sgMail = require("@sendgrid/mail");
+const sgMail = require("@sendgrid/mail");
 
-export async function sendEmail(params: {
-  to: string,
-  subject: string,
-  text: string,
-  html: string
-}) {
+module.exports.sendEmail = async (params) => {
   const { to, subject, text, html } = params
 
   const msg = {
