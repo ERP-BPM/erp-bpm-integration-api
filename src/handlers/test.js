@@ -1,6 +1,6 @@
 const sgMail = require("@sendgrid/mail");
 const { sendgridApiKey } = require('./env');
-const { sendEmail } = required('../controllers');
+const { sendEmail } = require('../controllers');
 
 sgMail.setApiKey(sendgridApiKey);
 
