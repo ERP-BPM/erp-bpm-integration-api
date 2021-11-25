@@ -1,7 +1,7 @@
-import * as zb from 'zeebe-node';
-import { v4 as uuidv4 } from 'uuid'
+const zb = require('zeebe-node');
+const uuid = require('uuid')
 
-export const sendMessageFunc = async (payload: any, headers: any): Promise<any> => {
+module.exports.sendMessageFunc = async (payload, headers) => {
   const workflow_id = payload.id
   const { username, password } = headers
   const { message_name } = payload;
@@ -21,7 +21,7 @@ export const sendMessageFunc = async (payload: any, headers: any): Promise<any> 
 
   const res = await zbc.publishMessage({
     correlationKey: workflow_id,
-    messageId: uuidv4(),
+    messageId: uuid.v4(),
     name: message_name,
     variables: {},
     timeToLive: zb.Duration.seconds.of(1), // seconds

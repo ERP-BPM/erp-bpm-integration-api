@@ -1,11 +1,10 @@
-import * as zb from 'zeebe-node';
-import sgMail = require("@sendgrid/mail");
-import { sendgridApiKey } from './env';
-import { sendEmail } from '../controllers';
+const sgMail = require("@sendgrid/mail");
+const { sendgridApiKey } = require('./env');
+const { sendEmail } = required('../controllers');
 
 sgMail.setApiKey(sendgridApiKey);
 
-export const handler = async (event: any) => {
+module.exports.handler = async (event) => {
   console.log('Hola desde lambda');
   console.log(event);
 

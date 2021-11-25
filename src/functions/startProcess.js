@@ -1,7 +1,7 @@
-import * as zb from 'zeebe-node';
-import { notifyPrivateInsurance, notifyPublicInsurance, notifyInsureActivity, patientComesActivity, notifyPatientComesActivity, changePatientInitialActivity, notifyNoInsurance, assignIdPatientActvity, assignBedActivity, deliverClothesActivity, notifyDoctorActivity, labStudiesActivity, resultsRegisterActivity, notifyDischargeActivity } from '../workers';
+const zb = require('zeebe-node');
+const { notifyPrivateInsurance, notifyPublicInsurance, notifyInsureActivity, patientComesActivity, notifyPatientComesActivity, changePatientInitialActivity, notifyNoInsurance, assignIdPatientActvity, assignBedActivity, deliverClothesActivity, notifyDoctorActivity, labStudiesActivity, resultsRegisterActivity, notifyDischargeActivity } = require('../workers');
 
-export const startProcessFunc = async (payload: any, headers: any): Promise<any> => {
+module.exports.startProcessFunc = async (payload, headers) => {
   const { username, password } = headers
 
   const zbc = new zb.ZBClient(
