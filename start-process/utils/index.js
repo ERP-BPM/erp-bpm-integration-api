@@ -1,4 +1,7 @@
 const sgMail = require("@sendgrid/mail");
+const { apiKey } = require('./env')
+
+sgMail.setApiKey(apiKey);
 
 module.exports.sendEmail = async (params) => {
   const { to, subject, text, html } = params
